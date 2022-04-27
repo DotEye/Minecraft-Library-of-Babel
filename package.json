@@ -1,0 +1,18 @@
+{
+    "name": "minecraft-library-of-babel",
+    "description": "The library of babel created in Minecraft",
+    "author": "DotEye",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "ff3": "^0.8.3",
+        "firebase": "9.8.2",
+        "minecraft-data": "3.1.1",
+        "minecraft-protocol": "1.34.0"
+    },
+    "type": "module",
+    "scripts": {
+        "start": "node src/main.js",
+        "debug": "node src/main.js --debug"
+    }
+}
