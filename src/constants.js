@@ -29,8 +29,9 @@ export const STRING_LENGTH = 15;
 export const VERSION = '1.18.2';
 
 export const EASTER_EGGS = {
-    '-7075568 224 24982944 187': 33,
+    '-7075568 224 24982944 187': 42,
     '6667312 -32 -26099536 104': 83,
+    '11963408 48 -14411312 161': 33,
 };
 
 export const PARTICLE_DATA = {
