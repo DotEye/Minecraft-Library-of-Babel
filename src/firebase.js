@@ -8,6 +8,7 @@ export let admins = new Set();
 export let bans = {};
 export let mutes = {};
 export let serverFullMessage = '§dServer is full!';
+export let defaultChatToggle = true;
 
 /*
  * Start Firebase listeners if a config exists. Firebase is used to store and listen for config value changes, which
@@ -25,7 +26,7 @@ export function startFirestoreListeners(server) {
 
     let movementTickInterval;
     onSnapshot(doc(firestore, 'config', 'config'), snapshot => {
-        const {movementDelay, motd, maxPlayers, serverFullMessage: _serverFullMessage} = snapshot.data();
+        const {movementDelay, motd, maxPlayers, defaultChatToggle: _defaultChatToggle, serverFullMessage: _serverFullMessage} = snapshot.data();
         if (movementDelay === undefined) throw `Couldn't get movementDelay from firestore.`;
         if (movementTickInterval !== undefined) clearInterval(movementTickInterval);
         console.log(`Updating movement delay to ${movementDelay}ms.`);
@@ -42,6 +43,10 @@ export function startFirestoreListeners(server) {
         if (_serverFullMessage === undefined) throw `Couldn't get serverFullMessage from firestore.`;
         console.log(`Updating server full message to "${_serverFullMessage}".`);
         serverFullMessage = _serverFullMessage;
+
+        if (defaultChatToggle === undefined) throw `Couldn't get defaultChatToggle from firestore.`;
+        console.log(`Updating defaultChatToggle full message to ${defaultChatToggle}.`);
+        defaultChatToggle = _defaultChatToggle;
     });
 
     onSnapshot(collection(firestore, 'admins'), snapshot => {

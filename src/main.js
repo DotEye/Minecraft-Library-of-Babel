@@ -1,9 +1,9 @@
 import {createServer} from 'minecraft-protocol';
 import {packets} from './packets.js';
-import {MAX_PLAYERS, SERVER_OPTIONS, SPAWN_PITCH, SPAWN_YAW, VERSION} from './constants.js';
+import {SERVER_OPTIONS, SPAWN_PITCH, SPAWN_YAW, VERSION} from './constants.js';
 import {HANDLERS} from './handlers.js';
 import {banKick, broadcast, clearHighlightInterval, getRandomSpawn, teleport, welcomeText} from './helper.js';
-import {admins, bans, serverFullMessage, startFirestoreListeners} from './firebase.js';
+import {admins, bans, defaultChatToggle, serverFullMessage, startFirestoreListeners} from './firebase.js';
 import {CONFIG} from './config.js';
 import {emojiFormat} from './emojiFormat.js';
 
@@ -32,6 +32,7 @@ server.on('login', function (client) {
         tpConfirmed: true,
         players: true,
         nearbyClients: new Set(),
+        chat: defaultChatToggle,
         recentChats: [],
         chatColors: true,
         ready: false,

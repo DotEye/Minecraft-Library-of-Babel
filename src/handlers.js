@@ -2,7 +2,7 @@ import {BOOKSHELF_COORDINATES, CHAT_HISTORY_LENGTH, NUM_DOUBLE_CHEST_SLOTS} from
 import {packets} from './packets.js';
 import {broadcast, convertAngle, error, getBookshelfCoordinates, getChunk} from './helper.js';
 import {commands} from './commands.js';
-import {mutes} from './firebase.js';
+import {admins, mutes} from './firebase.js';
 import {emojiFormat} from './emojiFormat.js';
 
 const OFFSETS = {
@@ -111,7 +111,7 @@ function handleChat(server, client, {message}) {
         broadcast(
             Object.fromEntries(Object.entries(server.clients).filter(([, client]) => client.__state.chat)),
             'chat',
-            [emojiFormat(`<🟪${client.username}⬜> ${message}`)],
+            [emojiFormat(`<${admins.has(client.uuid) ? '🟪' : '⬛'}${client.username}⬜> ${message}`)],
         );
         client.__state.recentChats.push(message);
         if (client.__state.recentChats.length > CHAT_HISTORY_LENGTH) client.__state.recentChats.shift();

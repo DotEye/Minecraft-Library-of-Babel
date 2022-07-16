@@ -309,7 +309,7 @@ export const commands = {
             return;
         }
 
-        if (parameters.length !== 1) {
+        if (parameters.length < 1) {
             error(client, 'That command takes one parameter.');
             return;
         }
