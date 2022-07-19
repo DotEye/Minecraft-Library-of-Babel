@@ -6,6 +6,7 @@ export const CHAT_HISTORY_LENGTH = 10;
 export const CLOSE_PLAYER_THRESHOLD = 48;
 export const COORDINATE_KEYS = ['x', 'y', 'z', 'yaw', 'pitch'];
 export const DEFAULT_MOVEMENT_TICK_INTERVAL = 100;
+export const DISCORD_SERVER_INVITE_URL = 'https://discord.gg/tykwEuuYCt';
 export const GAME_MODE = 2; // Adventure Mode
 export const LEARN_MORE_URL = 'https://doteye.online/projects/mclob';
 export const LIBRARY_CHUNK = JSON.parse(readFileSync('src/data/libraryChunk.json').toString());

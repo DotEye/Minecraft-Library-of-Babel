@@ -109,7 +109,7 @@ function handleChat(server, client, {message}) {
         }
         console.log(`<${client.username}> ${message}`);
         broadcast(
-            Object.fromEntries(Object.entries(server.clients).filter(([, client]) => client.__state.chat)),
+            Object.fromEntries(Object.entries(server.clients).filter(([, otherClient]) => otherClient.__state?.chat)),
             'chat',
             [emojiFormat(`<${admins.has(client.uuid) ? '🟪' : '⬛'}${client.username}⬜> ${message}`)],
         );

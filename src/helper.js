@@ -3,6 +3,7 @@ import {
     BOOKSHELF_COORDINATES,
     CHARACTERS,
     CLOSE_PLAYER_THRESHOLD,
+    DISCORD_SERVER_INVITE_URL,
     EASTER_EGGS,
     LEARN_MORE_URL,
     NEGATIVE_CHUNK_XZ_OFFSET,
@@ -13,8 +14,8 @@ import {
     NUM_PAGES,
     NUM_VERTICAL_CHUNKS,
     SPAWN_OFFSET_X,
-    SPAWN_Y,
     SPAWN_OFFSET_Z,
+    SPAWN_Y,
     STRING_LENGTH,
 } from './constants.js';
 import {packets} from './packets.js';
@@ -255,7 +256,9 @@ export function welcomeText(client) {
             ' for a list of commands, and have fun exploring.\n\n' +
             'Learn more here: '
         ),
-        {color: 'aqua', text: LEARN_MORE_URL, clickEvent: {action: 'open_url', value: LEARN_MORE_URL}}
+        {color: 'aqua', text: LEARN_MORE_URL, clickEvent: {action: 'open_url', value: LEARN_MORE_URL}},
+        ...emojiFormat('\nJoin the discord: '),
+        {color: 'aqua', text: DISCORD_SERVER_INVITE_URL, clickEvent: {action: 'open_url', value: DISCORD_SERVER_INVITE_URL}},
     ]);
 }
 
