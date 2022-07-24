@@ -246,7 +246,7 @@ export function welcomeText(client) {
     packets.chat(client, [
         ...emojiFormat(
             '🟪➕=== Welcome to the Minecraft Library of Babel ===⬜➖\n' +
-            'This library contains every possible 🟪➕15 character⬜➖page.\n\n' +
+            'This library contains every possible 🟪➕15 character⬜➖ page.\n\n' +
             'Right click a bookshelf to open it and take out books.\n' +
             'They will respawn, so no need to put them back.\n\n' +
             'Type ',
