@@ -153,7 +153,8 @@ export const commands = {
         const {x, y, z, shelf, shulker, book, page} = fromPageId(fromPage(decrypt(searchQuery)));
         const [shelfX, shelfY, shelfZ] = BOOKSHELF_COORDINATES[shelf].split(' ').map(coordinate => parseInt(coordinate));
         const tpCoordinates = Object.values(BOOKSHELF_COORDINATES_MAP)[shelf];
-        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ].map(coordinate => coordinate.toLocaleString('en-US'));
+        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ]
+            .map(coordinate => Math.abs(coordinate) > 999999 ? coordinate.toLocaleString('en-US') : coordinate);
         packets.chat(client, [
             ...emojiFormat(
                 '🟪➕=== Search Results ===\n' +
