@@ -308,10 +308,3 @@ export function notice(client, message) {
 export function error(client, message) {
     packets.chat(client, emojiFormat(`🟥➕[ERROR]➖ ${message}`));
 }
-
-/**
- * Simple function that formats a coordinate to be more human readable.
- */
- export function formatCoordinate(coordinate) {
-    return coordinate.toLocaleString("en-US");
-}
