@@ -31,7 +31,7 @@ import {decrypt} from './encryption.js';
  */
 function parseCoordinates(client, parameters, errorClient) {
     const coordinates = Object.fromEntries(parameters
-        .map((coordinate) => coordinate.replaceAll(',', ''))
+        .map(coordinate => coordinate.replaceAll(',', ''))
         .map((coordinate, index) => coordinate.startsWith('~')
             ? (parseFloat(coordinate.slice(1)) || 0) + client.__state.position[COORDINATE_KEYS[index]]
             : coordinate)
@@ -153,7 +153,7 @@ export const commands = {
         const {x, y, z, shelf, shulker, book, page} = fromPageId(fromPage(decrypt(searchQuery)));
         const [shelfX, shelfY, shelfZ] = BOOKSHELF_COORDINATES[shelf].split(' ').map(coordinate => parseInt(coordinate));
         const tpCoordinates = Object.values(BOOKSHELF_COORDINATES_MAP)[shelf];
-        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ].map(coordinate => coordinate.toLocaleString("en-US"));
+        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ].map(coordinate => coordinate.toLocaleString('en-US'));
         packets.chat(client, [
             ...emojiFormat(
                 '🟪➕=== Search Results ===\n' +
