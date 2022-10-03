@@ -2,6 +2,7 @@ import {
     clearHighlightInterval,
     createHighlightInterval,
     error,
+    formatCoordinate,
     fromPage,
     fromPageId,
     getChunk,
@@ -152,10 +153,11 @@ export const commands = {
         const {x, y, z, shelf, shulker, book, page} = fromPageId(fromPage(decrypt(searchQuery)));
         const [shelfX, shelfY, shelfZ] = BOOKSHELF_COORDINATES[shelf].split(' ').map(coordinate => parseInt(coordinate));
         const tpCoordinates = Object.values(BOOKSHELF_COORDINATES_MAP)[shelf];
+        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ].map(formatCoordinate);
         packets.chat(client, [
             ...emojiFormat(
                 '🟪➕=== Search Results ===\n' +
-                `⬜➖That text was found at 🟥➕x=${x + shelfX} y=${y + shelfY} z=${z + shelfZ}⬜➖.\n` +
+                `⬜➖That text was found at 🟥➕x=${formattedX} y=${formattedY} z=${formattedZ}⬜➖.\n` +
                 `In 🟨➕shelf ${shelf + 1n}⬜➖, 🟩➕shulker ${shulker + 1n}⬜➖, 🟦➕book ${book + 1n}⬜➖, 🟪➕page ${page + 1n}⬜➖.\n\n` +
                 `Actions: 🟦`,
             ),
