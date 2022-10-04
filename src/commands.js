@@ -31,7 +31,7 @@ import {decrypt} from './encryption.js';
  */
 function parseCoordinates(client, parameters, errorClient) {
     const coordinates = Object.fromEntries(parameters
-        .map(coordinate => coordinate.replaceAll(',', ''))
+        .map(coordinate => coordinate.replace(new RegExp(","), ''))
         .map((coordinate, index) => coordinate.startsWith('~')
             ? (parseFloat(coordinate.slice(1)) || 0) + client.__state.position[COORDINATE_KEYS[index]]
             : coordinate)
