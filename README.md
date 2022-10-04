@@ -12,6 +12,6 @@ If you're looking for the search tools site source code, head here: https://gith
 
 ### Running Your Own Server
 1. Download or clone the repository and open a terminal in the repository root.
-2. Install [Node.js](https://nodejs.org/en) and [Yarn](https://yarnpkg.com).
+2. Install [Node.js](https://nodejs.org/en) (v14) and [Yarn](https://yarnpkg.com).
 3. Install node dependencies with `yarn`.
 4. Start the server with `yarn start`.
