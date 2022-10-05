@@ -31,6 +31,7 @@ import {decrypt} from './encryption.js';
  */
 function parseCoordinates(client, parameters, errorClient) {
     const coordinates = Object.fromEntries(parameters
+        .map(coordinate => coordinate.replace(new RegExp(','), ''))
         .map((coordinate, index) => coordinate.startsWith('~')
             ? (parseFloat(coordinate.slice(1)) || 0) + client.__state.position[COORDINATE_KEYS[index]]
             : coordinate)
@@ -152,10 +153,12 @@ export const commands = {
         const {x, y, z, shelf, shulker, book, page} = fromPageId(fromPage(decrypt(searchQuery)));
         const [shelfX, shelfY, shelfZ] = BOOKSHELF_COORDINATES[shelf].split(' ').map(coordinate => parseInt(coordinate));
         const tpCoordinates = Object.values(BOOKSHELF_COORDINATES_MAP)[shelf];
+        const [formattedX, formattedY, formattedZ] = [x + shelfX, y + shelfY, z + shelfZ]
+            .map(coordinate => Math.abs(coordinate) > 999999 ? coordinate.toLocaleString('en-US') : coordinate);
         packets.chat(client, [
             ...emojiFormat(
                 '🟪➕=== Search Results ===\n' +
-                `⬜➖That text was found at 🟥➕x=${x + shelfX} y=${y + shelfY} z=${z + shelfZ}⬜➖.\n` +
+                `⬜➖That text was found at 🟥➕x=${formattedX} y=${formattedY} z=${formattedZ}⬜➖.\n` +
                 `In 🟨➕shelf ${shelf + 1n}⬜➖, 🟩➕shulker ${shulker + 1n}⬜➖, 🟦➕book ${book + 1n}⬜➖, 🟪➕page ${page + 1n}⬜➖.\n\n` +
                 `Actions: 🟦`,
             ),
